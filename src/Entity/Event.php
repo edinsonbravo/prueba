@@ -2,66 +2,50 @@
 
 namespace App\Entity;
 
+use App\Repository\EventRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Event
- *
- * @ORM\Table(name="events")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=EventRepository::class)
  */
 class Event
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updatedAt;
+    private $updateAt;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="ip_address", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $ipAddress;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="user_agent", type="string", length=255, nullable=true)
-     */
-    private $userAgent;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="code_country", type="string", length=2, nullable=true)
+     * @ORM\Column(type="string", length=2)
      */
     private $codeCountry;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="code_event", type="string", length=6, nullable=true)
+     * @ORM\Column(type="string", length=6)
      */
     private $codeEvent;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $userAgent;
 
     public function getId(): ?int
     {
@@ -73,21 +57,21 @@ class Event
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdateAt(): ?\DateTimeInterface
     {
-        return $this->updatedAt;
+        return $this->updateAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdateAt(?\DateTimeInterface $updateAt): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updateAt = $updateAt;
 
         return $this;
     }
@@ -97,21 +81,9 @@ class Event
         return $this->ipAddress;
     }
 
-    public function setIpAddress(?string $ipAddress): self
+    public function setIpAddress(string $ipAddress): self
     {
         $this->ipAddress = $ipAddress;
-
-        return $this;
-    }
-
-    public function getUserAgent(): ?string
-    {
-        return $this->userAgent;
-    }
-
-    public function setUserAgent(?string $userAgent): self
-    {
-        $this->userAgent = $userAgent;
 
         return $this;
     }
@@ -121,7 +93,7 @@ class Event
         return $this->codeCountry;
     }
 
-    public function setCodeCountry(?string $codeCountry): self
+    public function setCodeCountry(string $codeCountry): self
     {
         $this->codeCountry = $codeCountry;
 
@@ -133,12 +105,22 @@ class Event
         return $this->codeEvent;
     }
 
-    public function setCodeEvent(?string $codeEvent): self
+    public function setCodeEvent(string $codeEvent): self
     {
         $this->codeEvent = $codeEvent;
 
         return $this;
     }
 
+    public function getUserAgent(): ?string
+    {
+        return $this->userAgent;
+    }
 
+    public function setUserAgent(string $userAgent): self
+    {
+        $this->userAgent = $userAgent;
+
+        return $this;
+    }
 }
