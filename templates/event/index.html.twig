@@ -8,10 +8,12 @@
 
 
 {% block body %}
+
 {{ include('navBar.html.twig') }}
+
 <div class="container-fluid mb-15 container-top">
 	<div class="container mt-15">
-		{{ include('carousel.html.twig') }}
+		{{ include('event/carousel.html.twig') }}
 	</div>
 	<div class="container mt-15">
 		<div class="panel panel-primary">
@@ -37,27 +39,13 @@
 				    	<td>{{ event.createdAt|date("Y-m-d H:i:s a") }}</td>
 				    </tr>
 				    {% endfor %}
-				    <tr>
-				    	<td>id</td>
-				    	<td>codeCountry</td>
-				    	<td>userAgent</td>
-				    	<td>ipAddress</td>
-				    	<td>codeEvent</td>
-				    	<td>createdAt|date("Y-m-d H:i:s a")</td>
-				    </tr>
-				    <tr>
-				    	<td>id</td>
-				    	<td>codeCountry</td>
-				    	<td>userAgent</td>
-				    	<td>ipAddress</td>
-				    	<td>codeEvent</td>
-				    	<td>createdAt|date("Y-m-d H:i:s a")</td>
-				    </tr>
 				<tbody>
 			</table>
 		  </div>
 		</div>
 	</div>
 </div>
+
 {{ include('footer.html.twig') }}
+
 {% endblock %}
