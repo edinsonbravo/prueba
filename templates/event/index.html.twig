@@ -9,12 +9,25 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/prueba/src/Controller/EventController.php'|file_link(0) }}">src/Controller/EventController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/prueba/templates/event/index.html.twig'|file_link(0) }}">templates/event/index.html.twig</a></code></li>
-    </ul>
+	<table>
+		<thead>
+			<th>Id</th>
+			<th>Código de país</th>
+			<th>Navegador</th>
+			<th>Dirección Ip</th>
+			<th>Clave del evento</th>
+		</thead>
+		<tbody>
+		    {% for event in events %}
+		    <tr>
+		    	<td>{{ event.id }}</td>
+		    	<td>{{ event.codeCountry }}</td>
+		    	<td>{{ event.userAgent }}</td>
+		    	<td>{{ event.ipAddress }}</td>
+		    	<td>{{ event.codeEvent }}</td>
+		    </tr>
+		    {% endfor %}
+		<tbody>
+	</table>
 </div>
 {% endblock %}
