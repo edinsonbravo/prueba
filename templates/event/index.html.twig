@@ -1,33 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EventController!{% endblock %}
+{% block title %}Listado Eventos{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="carousel.css">
+{% endblock %}
+
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-	<table>
-		<thead>
-			<th>Id</th>
-			<th>Código de país</th>
-			<th>Navegador</th>
-			<th>Dirección Ip</th>
-			<th>Clave del evento</th>
-		</thead>
-		<tbody>
-		    {% for event in events %}
-		    <tr>
-		    	<td>{{ event.id }}</td>
-		    	<td>{{ event.codeCountry }}</td>
-		    	<td>{{ event.userAgent }}</td>
-		    	<td>{{ event.ipAddress }}</td>
-		    	<td>{{ event.codeEvent }}</td>
-		    </tr>
-		    {% endfor %}
-		<tbody>
-	</table>
+{{ include('navBar.html.twig') }}
+<div class="container-fluid mb-15 container-top">
+	<div class="container mt-15">
+		{{ include('carousel.html.twig') }}
+	</div>
+	<div class="container mt-15">
+		<div class="panel panel-primary">
+		  <div class="panel-heading"><i class="fa fa-list mr-5"></i>Eventos</div>
+		  <div class="panel-body">
+			<table class="table table-hover table-bordered" id="listEvent">
+				<thead>
+					<th>Id</th>
+					<th>Código de país</th>
+					<th>Navegador</th>
+					<th>Dirección Ip</th>
+					<th>Clave del evento</th>
+					<th>Fecha Creación</th>
+				</thead>
+				<tbody>
+				    {% for event in events %}
+				    <tr>
+				    	<td>{{ event.id }}</td>
+				    	<td>{{ event.codeCountry }}</td>
+				    	<td>{{ event.userAgent }}</td>
+				    	<td>{{ event.ipAddress }}</td>
+				    	<td>{{ event.codeEvent }}</td>
+				    	<td>{{ event.createdAt|date("Y-m-d H:i:s a") }}</td>
+				    </tr>
+				    {% endfor %}
+				    <tr>
+				    	<td>id</td>
+				    	<td>codeCountry</td>
+				    	<td>userAgent</td>
+				    	<td>ipAddress</td>
+				    	<td>codeEvent</td>
+				    	<td>createdAt|date("Y-m-d H:i:s a")</td>
+				    </tr>
+				    <tr>
+				    	<td>id</td>
+				    	<td>codeCountry</td>
+				    	<td>userAgent</td>
+				    	<td>ipAddress</td>
+				    	<td>codeEvent</td>
+				    	<td>createdAt|date("Y-m-d H:i:s a")</td>
+				    </tr>
+				<tbody>
+			</table>
+		  </div>
+		</div>
+	</div>
 </div>
+{{ include('footer.html.twig') }}
 {% endblock %}
