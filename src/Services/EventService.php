@@ -2,17 +2,16 @@
 
 namespace App\Services;
 
-use App\Entity\Event;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\EventRepository;
 
 class EventService
 {
 
-    protected $em;
+    protected $eventRepository;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EventRepository $eventRepository)
     {
-        $this->em = $em;
+        $this->eventRepository = $eventRepository;
     }
 
     /**
@@ -20,6 +19,6 @@ class EventService
      */
     public function eventList($initial, $finish)
     {
-        return $this->em->getRepository(Event::class)->findByDateTime($initial, $finish);
+        return $this->eventRepository->findByDateTime($initial, $finish);
     }
 }
